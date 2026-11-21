@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeneWeaver | Genome Intelligence</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --bg: #080e1b;
+    --panel: #111b2d;
+    --panel2: #152239;
+    --border: rgba(148, 175, 210, .13);
+    --cyan: #42d9e8;
+    --purple: #9b82ff;
+    --text: #edf4ff;
+    --muted: #8b9bb5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 255px;
+    background: #0c1525;
+    border-right: 1px solid var(--border);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font: 700 25px 'Space Grotesk', sans-serif;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--cyan);
+}
+
+.logo-icon {
+    display: inline-grid;
+    place-items: center;
+    background: linear-gradient(135deg, #37d9e6, #7165ee);
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    margin-right: 8px;
+    font-size: 19px;
+}
+
+.brand-sub {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin: 10px 0 45px;
+}
+
+.nav-label {
+    color: #647690;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 22px 10px 12px;
+}
+
+.nav-item {
+    padding: 13px 14px;
+    color: #9cabc1;
+    font-size: 13px;
+    border-radius: 9px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: linear-gradient(90deg, rgba(66,217,232,.17), rgba(66,217,232,.04));
+    color: var(--cyan);
+    border: 1px solid rgba(66,217,232,.16);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    border: 1px solid var(--border);
+    background: #111d30;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.sidebar-bottom p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 7px;
+}
+
+/* MAIN */
+
+.main {
+    flex: 1;
+    min-width: 0;
+    padding: 28px 40px;
+    max-width: 1600px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 12px;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #39dce8, #8068f3);
+    color: #07121f;
+    font-weight: 800;
+}
+
+/* HERO */
+
+.hero {
+    margin: 30px 0;
+    padding: 35px;
+    border-radius: 18px;
+    border: 1px solid rgba(66,217,232,.2);
+    background:
+        radial-gradient(ellipse at 90% 15%, rgba(110,94,255,.23), transparent 35%),
+        radial-gradient(ellipse at 10% 100%, rgba(30,198,207,.13), transparent 40%),
+        #111e32;
+    position: relative;
+    overflow: hidden;
+}
+
+.eyebrow {
+    color: var(--cyan);
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font: 700 34px 'Space Grotesk', sans-serif;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, #45e0e7, #a48bff);
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: #9eacc2;
+    font-size: 14px;
+    max-width: 560px;
+    line-height: 1.8;
+}
+
+.hero-tag {
+    display: inline-block;
+    margin-top: 23px;
+    padding: 9px 13px;
+    border-radius: 7px;
+    background: rgba(66,217,232,.09);
+    color: var(--cyan);
+    font-size: 11px;
+    border: 1px solid rgba(66,217,232,.2);
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 22px;
+    border-radius: 14px;
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.stat-icon {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: rgba(66,217,232,.1);
+    color: var(--cyan);
+    font-size: 18px;
+}
+
+.stat h2 {
+    font: 700 25px 'Space Grotesk', sans-serif;
+    margin: 16px 0 5px;
+}
+
+.stat small {
+    color: #788ba5;
+    font-size: 11px;
+}
+
+/* CONTENT GRID */
+
+.content {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.card-heading h3 {
+    font: 600 18px 'Space Grotesk', sans-serif;
+}
+
+.card-description {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 27px;
+    line-height: 1.7;
+}
+
+label {
+    display: block;
+    color: #d9e5f5;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    background: #0b1423;
+    border: 1px solid #2b3b53;
+    border-radius: 9px;
+    padding: 15px;
+    color: white;
+    outline: none;
+    font-size: 13px;
+    margin-bottom: 23px;
+}
+
+input[type="text"]:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(66,217,232,.08);
+}
+
+.upload {
+    background: #0b1423;
+    border: 1.5px dashed #425775;
+    border-radius: 12px;
+    padding: 32px 15px;
+    text-align: center;
+    margin-bottom: 22px;
+    transition: .2s;
+}
+
+.upload:hover {
+    border-color: var(--cyan);
+    background: #101e31;
+}
+
+.upload-icon {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 14px;
+    border-radius: 13px;
+    background: rgba(66,217,232,.12);
+    color: var(--cyan);
+    font-size: 25px;
+}
+
+.upload h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.upload p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 17px;
+}
+
+input[type="file"] {
+    max-width: 100%;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.btn {
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    padding: 15px;
+    background: linear-gradient(100deg, #23bcca, #7066ed);
+    color: #06121e;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+.status-message {
+    margin-top: 15px;
+    color: var(--cyan);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* ENGINE PANEL */
+
+.engine-item {
+    background: #0d1829;
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 11px;
+    margin-top: 13px;
+}
+
+.engine-item h4 {
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.engine-item p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.engine-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #65dfb1;
+    font-size: 11px;
+    margin-top: 13px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    background: #55d9a2;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #55d9a2;
+}
+
+.footer {
+    text-align: center;
+    color: #586b85;
+    font-size: 11px;
+    padding: 28px 0 10px;
+}
+
+@media(max-width: 1000px) {
+    .main { padding: 24px; }
+    .content { grid-template-columns: 1fr; }
+}
+
+@media(max-width: 700px) {
+    .sidebar { display: none; }
+    .main { padding: 17px; }
+    .stats { grid-template-columns: 1fr; }
+    .hero { padding: 24px; }
+    .hero h1 { font-size: 27px; }
+    .user { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon">⌬</span>Gene<span>Weaver</span>
+    </div>
+
+    <p class="brand-sub">GENOME INTELLIGENCE</p>
+
+    <div class="nav-label">MAIN MENU</div>
+
+    <div class="nav-item active" data-section="dashboard">
+        ◈ &nbsp; Dashboard
+    </div>
+
+    <div class="nav-item" data-section="new-alignment">
+        ⌘ &nbsp; New Alignment
+    </div>
+
+    <div class="nav-item" data-section="analysis-results">
+        ▤ &nbsp; Analysis Results
+    </div>
+
+    <div class="nav-label">PLATFORM</div>
+
+    <div class="nav-item" data-section="settings">
+        ⚙ &nbsp; Settings
+    </div>
+
+    <div class="nav-item" data-section="about">
+        ⓘ &nbsp; About GeneWeaver
+    </div>
+
+    <div class="sidebar-bottom">
+        <span style="color:var(--cyan);font-size:12px">● SYSTEM INFORMATION</span>
+        <p>CRISPR Alignment Engine</p>
+        <p>CPU fallback available</p>
+    </div>
+</aside>
+
+<main class="main">
+
+    <div class="topbar">
+        <p class="breadcrumb">Workspace / <span style="color:var(--cyan)">Dashboard</span></p>
+
+        <div class="user">
+            Research Workspace
+            <div class="avatar">G</div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="eyebrow">NEXT-GENERATION GENOMICS PLATFORM</div>
+        <h1>Explore DNA. <span>Discover Precision.</span></h1>
+        <p>
+            A high-performance CRISPR alignment engine designed to
+            analyze genomic sequences and identify potential off-target sites.
+        </p>
+        <div class="hero-tag">⌬ &nbsp; GPU-ACCELERATED CRISPR ANALYSIS</div>
+    </section>
+
+    <section class="stats">
+
+        <div class="stat">
+            <div class="stat-top">
+                Alignment Engine
+                <div class="stat-icon">⌬</div>
+            </div>
+            <h2>Ready</h2>
+            <small>Engine modules available</small>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top">
+                Active Backend
+                <div class="stat-icon">ϟ</div>
+            </div>
+            <h2>Numba CPU</h2>
+            <small>Parallel CPU fallback selected</small>
+        </div>
+
+        <div class="stat">
+            <div class="stat-top">
+                Analysis Status
+                <div class="stat-icon">◷</div>
+            </div>
+            <h2>Waiting</h2>
+            <small>No analysis currently running</small>
+        </div>
+
+    </section>
+
+    <section class="content">
+
+        <div class="card">
+            <div class="card-heading">
+                <span style="color:var(--cyan);font-size:22px">⌘</span>
+                <h3>Start New Analysis</h3>
+            </div>
+
+            <p class="card-description">
+                Configure your CRISPR guide sequence and select a reference genome.
+            </p>
+
+            <form id="analysisForm">
+
+                <label for="guide">GUIDE RNA SEQUENCE</label>
+
+                <input
+                    type="text"
+                    id="guide"
+                    placeholder="e.g. GACGTTACCGGATTACAGTC"
+                    maxlength="20"
+                    required
+                >
+
+                <label for="genome">REFERENCE GENOME</label>
+
+                <div class="upload">
+                    <div class="upload-icon">⇧</div>
+                    <h4>Upload FASTA Genome</h4>
+                    <p>Choose a reference genome in .fa or .fasta format</p>
+                    <input type="file" id="genome" accept=".fa,.fasta" required>
+                </div>
+
+                <button class="btn" type="submit">
+                    Start Genome Analysis &nbsp; →
+                </button>
+
+                <div class="status-message" id="status"></div>
+
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-heading">
+                <span style="color:var(--purple);font-size:22px">✧</span>
+                <h3>Engine Overview</h3>
+            </div>
+
+            <p class="card-description">
+                Intelligent sequence processing architecture.
+            </p>
+
+            <div class="engine-item">
+                <h4>01 / Sequence Processing</h4>
+                <p>DNA encoding and overlapping genome chunk processing for efficient scanning.</p>
+            </div>
+
+            <div class="engine-item">
+                <h4>02 / CRISPR Detection</h4>
+                <p>Guide matching, mismatch counting and NGG PAM recognition.</p>
+            </div>
+
+            <div class="engine-item">
+                <h4>03 / Compute Architecture</h4>
+                <p>CUDA GPU execution when supported, with Numba CPU fallback.</p>
+                <div class="engine-status"><span class="dot"></span> CPU fallback available</div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="footer">
+        GENEWEAVER · GROUP 5 · GENOME INTELLIGENCE PLATFORM
+    </footer>
+
+<!-- SETTINGS SECTION -->
+<section id="settings" class="dashboard-card" style="display:none; margin-top:25px;">
+    <h2>⚙ Settings</h2>
+    <p>Configure your GeneWeaver analysis preferences.</p>
+
+    <label for="defaultMismatch">Default Maximum Mismatches</label>
+    <select id="defaultMismatch">
+        <option value="0">0 mismatches</option>
+        <option value="1">1 mismatch</option>
+        <option value="2">2 mismatches</option>
+        <option value="3">3 mismatches</option>
+        <option value="4" selected>4 mismatches</option>
+    </select>
+
+    <p id="settingsStatus">Current default: 4 mismatches</p>
+    <button class="btn" type="button" id="saveSettings">
+        Save Settings
+    </button>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="dashboard-card" style="display:none; margin-top:25px;">
+    <h2>ⓘ About GeneWeaver</h2>
+    <p>
+        GeneWeaver is a CRISPR genome alignment and off-target
+        detection platform.
+    </p>
+    <h3>Project Features</h3>
+    <ul>
+        <li>FASTA genome upload</li>
+        <li>Guide RNA sequence validation</li>
+        <li>Off-target detection</li>
+        <li>CPU and GPU computing support</li>
+        <li>Analysis result storage using SQLite</li>
+    </ul>
+    <p><strong>Project:</strong> GeneWeaver GPU</p>
+    <p><strong>Version:</strong> 1.0.0</p>
+</section>
+
+</main>
+</div>
+
+<script>
+const form = document.getElementById("analysisForm");
+const status = document.getElementById("status");
+const genomeInput = document.getElementById("genome");
+
+genomeInput.addEventListener("change", function () {
+    if (this.files.length) {
+        status.textContent = "Selected genome: " + this.files[0].name;
+    }
+});
+
+form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const guide = document.getElementById("guide").value.trim().toUpperCase();
+    const file = genomeInput.files[0];
+    const button = form.querySelector('button[type="submit"]');
+
+    if (!/^[ACGT]{20}$/.test(guide)) {
+        status.textContent = "Enter exactly 20 valid DNA bases (A, C, G, T).";
+        return;
+    }
+
+    if (!file || !/\.(fa|fasta)$/i.test(file.name)) {
+        status.textContent = "Please select a valid FASTA file.";
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("guide", guide);
+    formData.append("genome", file);
+    formData.append("max_mm", "4");
+
+    button.disabled = true;
+    status.textContent = "Uploading genome and starting analysis...";
+
+    try {
+        const response = await fetch(
+            "http://127.0.0.1:8000/api/analyze",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || "Analysis failed.");
+        }
+
+        status.textContent =
+            "Analysis completed successfully! " +
+            "Job ID: " + data.job_id +
+            " | Total bases: " + data.total_bases +
+            " | Total hits: " + data.total_hits +
+            " | Backend: " + data.backend;
+
+    } catch (error) {
+        status.textContent = "Error: " + error.message;
+    } finally {
+        button.disabled = false;
+    }
+});
+
+const navItems = document.querySelectorAll(".nav-item");
+
+const sections = {
+    dashboard: document.querySelector("main"),
+    "new-alignment": document.getElementById("analysisForm"),
+    "analysis-results": document.getElementById("analysisResults"),
+    settings: document.getElementById("settings"),
+    about: document.getElementById("about")
+};
+
+function showSection(sectionName) {
+    // Hide Settings and About initially.
+    document.getElementById("settings").style.display = "none";
+    document.getElementById("about").style.display = "none";
+
+    if (sectionName === "dashboard") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (sectionName === "new-alignment") {
+        sections["new-alignment"].scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    } else if (sectionName === "analysis-results") {
+        if (sections["analysis-results"]) {
+            sections["analysis-results"].scrollIntoView({
+                behavior: "smooth"
+            });
+        } else {
+            status.textContent = "Analysis Results section is not ready yet.";
+        }
+    } else if (sectionName === "settings" || sectionName === "about") {
+        sections[sectionName].style.display = "block";
+        sections[sectionName].scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+}
+
+navItems.forEach(function (item) {
+    item.addEventListener("click", function () {
+        navItems.forEach(function (nav) {
+            nav.classList.remove("active");
+        });
+
+        item.classList.add("active");
+        showSection(item.dataset.section);
+    });
+});
+
+// Save settings
+document.getElementById("saveSettings").addEventListener("click", function () {
+    const mismatch = document.getElementById("defaultMismatch").value;
+
+    document.getElementById("settingsStatus").textContent =
+        "Settings saved! Default maximum mismatches: " + mismatch;
+});
+</script>
+
+</body>
+</html>
